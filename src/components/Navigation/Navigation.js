@@ -10,9 +10,6 @@ export default function Navigation() {
     return (
         <nav className="nav">
             <ul className="nav_links">
-                <Link style={linkStyle} to='/login'>
-                    <li>Login</li>
-                </Link>
                 <Link style={linkStyle} to='/menu'>
                     <li>Menu</li>
                 </Link>
