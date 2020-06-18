@@ -11,7 +11,10 @@ function Menu(props) {
                     name={pizza.name}
                     descr={pizza.descr}
                     price={pizza.price}
+                    quantity={pizza.quantity}
                     clicked={() => props.clicked(pizza)}
+                    inc={() => props.inc(pizza)}
+                    dec={() => props.dec(pizza)}
                     />
                     </li> 
                 })}             
@@ -26,6 +29,11 @@ function Pizza(props) {
             <h3>{props.name}</h3>
             <p>{props.descr}</p>
             <p>{props.price} $</p>
+            <p>Quantity: {props.quantity}</p>
+            <div className="count-buttons">
+                <button className="count-buttons__increase" onClick={props.inc}>+</button>
+                <button className="count-buttons__decrease" onClick={props.dec}>-</button>
+            </div>
             <button className="buy-button" onClick={props.clicked}>Add to Cart</button>
         </div>
     )

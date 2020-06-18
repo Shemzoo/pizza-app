@@ -13,6 +13,7 @@ class App extends Component {
         name: 'Margherita',
         price: 15,
         inCart: false,
+        quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
   
@@ -20,6 +21,7 @@ class App extends Component {
         name: 'Carbonara',
         price: 15,
         inCart: false,
+        quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
   
@@ -27,6 +29,7 @@ class App extends Component {
         name: 'Crudo',
         price: 15,
         inCart: false,
+        quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
   
@@ -34,6 +37,7 @@ class App extends Component {
         name: 'Pugliese',
         price: 15,
         inCart: false,
+        quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
   
@@ -41,6 +45,7 @@ class App extends Component {
         name: 'Romana',
         price: 15,
         inCart: false,
+        quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
   
@@ -48,6 +53,7 @@ class App extends Component {
         name: 'Schiacciata',
         price: 15,
         inCart: false,
+        quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
   
@@ -55,6 +61,7 @@ class App extends Component {
         name: 'Americana',
         price: 15,
         inCart: false,
+        quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
   
@@ -62,6 +69,7 @@ class App extends Component {
         name: 'Gorgonzola',
         price: 15,
         inCart: false,
+        quantity: 1,  
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       }
     ],
@@ -72,36 +80,89 @@ class App extends Component {
 
   };
 
+  quantityReset = (pizza) => {
+    let pizzas = [...this.state.pizzas]
+    const id = pizza.id - 1;
+    pizzas[id].quantity = 1;
+    this.setState({ pizzas: pizzas })
+  }
+
+
   buttonClickedHandler = (pizza) => {
 
     this.setState({ cart: [...this.state.cart, pizza] }) 
 
-    this.setState( {total: Number(this.state.total + pizza.price) })
-
-    console.log(this.state.cart)
-    console.log(this.state.total)
+    this.setState( { total: Number(this.state.total + pizza.price * pizza.quantity) })
+    
   };
 
   orderButtonHandler = () => {
-    
-    // prompt with form (Name, Surname, Phone) and then alert(Thanks, {name}! Your order recieved. We will call you on {phone} shortly)
+   alert('Thank you! Order received. Our manager will contact you shortly!') 
   }
 
+  incButtonHandler = (pizza) => {
+    let pizzas = [...this.state.pizzas]
+    const id = pizza.id - 1
+    pizzas[id].quantity += 1
+
+    this.setState({ pizzas: pizzas })
+  }
+
+  decButtonHandler = (pizza) => {
+    let pizzas = [...this.state.pizzas]
+    const id = pizza.id - 1
+
+    if (pizzas[id].quantity > 0) {
+      pizzas[id].quantity -= 1
+    }                          
+
+    this.setState({ pizzas: pizzas })
+  }
+
+  cartIncButtonHandler = (item) => {
+    let cart = [...this.state.cart]
+    const id = item.id - 1
+    cart[id].quantity += 1
+
+    this.setState({ cart: cart })
+    console.log(cart)
+  };
+
+  cartDecButtonHandler = (item) => {
+    // const id = item.id
+    // let cart = [...this.state.cart]
+    // console.log(cart)
+    // console.log(id)
+    // console.log(cart[1])
+    // let updQuantity = item.quantity - 1;
+    // console.log(updQuantity)
+  };
 
   render () {
     return (
       <Router>
         <div className="App">
-          <h1>Pizza App</h1>
+          <h1>(⊃｡•́‿•̀｡)⊃━☆ﾟ :｡･:*:･ﾟ’★,｡･:*:･ﾟ’☆</h1>
+          <h2>Pizza App!</h2>
           <p>Welcome to our shop! Press "Menu" and choose your pizza!</p>
           <Navigation />
           <Switch>  
             <Route 
             path="/menu"
-            render={() => <Menu pizzas={this.state.pizzas} clicked={this.buttonClickedHandler}/>} />
+            render={() => <Menu 
+              pizzas={this.state.pizzas}
+              clicked={this.buttonClickedHandler}
+              inc={this.incButtonHandler}
+              dec={this.decButtonHandler}
+              />} />
             <Route
             path="/cart"
-            render={() => <Cart cart={this.state.cart} total={this.state.total} clicked={this.orderButtonHandler} />}
+            render={() => <Cart
+              cart={this.state.cart}
+              total={this.state.total}
+              clicked={this.orderButtonHandler}
+              inc={this.cartIncButtonHandler}
+              dec={this.cartDecButtonHandler} />}
             />
           </Switch> 
         </div>
