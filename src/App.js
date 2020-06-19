@@ -74,9 +74,9 @@ class App extends Component {
 
   buttonClickedHandler = (pizza) => {
 
-    this.setState({ cart: [...this.state.cart, pizza] }) 
+    this.setState( { cart: [...this.state.cart, pizza] } ) 
 
-    this.setState( { total: Number(this.state.total + pizza.price * pizza.quantity) })
+    this.setState( { total: Number(this.state.total + pizza.price * pizza.quantity) } )
     
   };
 
@@ -84,31 +84,25 @@ class App extends Component {
    alert('Thank you for your order! Our manager will contact you shortly.') 
   }
 
-  incButtonHandler = (pizza, index) => {
-    let pizzas = [...this.state.pizzas]
-    pizzas[index].quantity += 1
-
-    this.setState({ pizzas: pizzas })
+  handlePizzaChange = (pizza, index) => {
+    let pizzas = [...this.state.pizzas];
+    pizzas[index] = pizza;
+    this.setState( { pizzas: pizzas } );
   }
 
-  decButtonHandler = (pizza, index) => {
-    let pizzas = [...this.state.pizzas]
-
-    if (pizzas[index].quantity > 0) {
-      pizzas[index].quantity -= 1
-    }                          
-
-    this.setState({ pizzas: pizzas })
+  handleIncItemChange = (item, index) => {
+    let cart = [...this.state.cart];
+    cart[index] = item;
+    this.setState( { cart: cart } );
+    this.setState( { total: Number(this.state.total + item.price) } )
   }
 
-  cartIncButtonHandler = (item) => {
-    let cart = [...this.state.cart]
-    const id = item.id - 1
-    cart[id].quantity += 1
-
-    this.setState({ cart: cart })
-    console.log(cart)
-  };
+  handleDecItemChange = (item, index) => {
+    let cart = [...this.state.cart];
+    cart[index] = item;
+    this.setState( { cart: cart } );
+    this.setState( { total: Number(this.state.total - item.price) } )
+  }
 
   render () {
     return (
@@ -126,6 +120,7 @@ class App extends Component {
               clicked={this.buttonClickedHandler}
               inc={this.incButtonHandler}
               dec={this.decButtonHandler}
+              onPizzaChange={this.handlePizzaChange}
               />} />
             <Route
             path="/cart"
@@ -134,7 +129,9 @@ class App extends Component {
               total={this.state.total}
               clicked={this.orderButtonHandler}
               inc={this.cartIncButtonHandler}
-              dec={this.cartDecButtonHandler} />}
+              dec={this.cartDecButtonHandler}
+              itemInc={this.handleIncItemChange}
+              itemDec={this.handleDecItemChange} />}
             />
           </Switch> 
         </div>
