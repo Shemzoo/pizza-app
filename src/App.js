@@ -12,7 +12,6 @@ class App extends Component {
       { id: 1,
         name: 'Margherita',
         price: 15,
-        inCart: false,
         quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
@@ -20,7 +19,6 @@ class App extends Component {
       { id: 2,
         name: 'Carbonara',
         price: 15,
-        inCart: false,
         quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
@@ -28,7 +26,6 @@ class App extends Component {
       { id: 3,
         name: 'Crudo',
         price: 15,
-        inCart: false,
         quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
@@ -36,7 +33,6 @@ class App extends Component {
       { id: 4,
         name: 'Pugliese',
         price: 15,
-        inCart: false,
         quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
@@ -44,7 +40,6 @@ class App extends Component {
       { id: 5,
         name: 'Romana',
         price: 15,
-        inCart: false,
         quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
@@ -52,7 +47,6 @@ class App extends Component {
       { id: 6,
         name: 'Schiacciata',
         price: 15,
-        inCart: false,
         quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
@@ -60,7 +54,6 @@ class App extends Component {
       { id: 7,
         name: 'Americana',
         price: 15,
-        inCart: false,
         quantity: 1,
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       },
@@ -68,7 +61,6 @@ class App extends Component {
       { id: 8,
         name: 'Gorgonzola',
         price: 15,
-        inCart: false,
         quantity: 1,  
         descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
       }
@@ -78,15 +70,7 @@ class App extends Component {
 
     total: ''
 
-  };
-
-  quantityReset = (pizza) => {
-    let pizzas = [...this.state.pizzas]
-    const id = pizza.id - 1;
-    pizzas[id].quantity = 1;
-    this.setState({ pizzas: pizzas })
-  }
-
+  };  
 
   buttonClickedHandler = (pizza) => {
 
@@ -97,23 +81,21 @@ class App extends Component {
   };
 
   orderButtonHandler = () => {
-   alert('Thank you! Order received. Our manager will contact you shortly!') 
+   alert('Thank you for your order! Our manager will contact you shortly.') 
   }
 
-  incButtonHandler = (pizza) => {
+  incButtonHandler = (pizza, index) => {
     let pizzas = [...this.state.pizzas]
-    const id = pizza.id - 1
-    pizzas[id].quantity += 1
+    pizzas[index].quantity += 1
 
     this.setState({ pizzas: pizzas })
   }
 
-  decButtonHandler = (pizza) => {
+  decButtonHandler = (pizza, index) => {
     let pizzas = [...this.state.pizzas]
-    const id = pizza.id - 1
 
-    if (pizzas[id].quantity > 0) {
-      pizzas[id].quantity -= 1
+    if (pizzas[index].quantity > 0) {
+      pizzas[index].quantity -= 1
     }                          
 
     this.setState({ pizzas: pizzas })
@@ -126,16 +108,6 @@ class App extends Component {
 
     this.setState({ cart: cart })
     console.log(cart)
-  };
-
-  cartDecButtonHandler = (item) => {
-    // const id = item.id
-    // let cart = [...this.state.cart]
-    // console.log(cart)
-    // console.log(id)
-    // console.log(cart[1])
-    // let updQuantity = item.quantity - 1;
-    // console.log(updQuantity)
   };
 
   render () {

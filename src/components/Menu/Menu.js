@@ -2,10 +2,11 @@ import React from 'react';
 import './Menu.css'
 
 function Menu(props) {
+
     return (
         <div className="catalog">
             <ul className="catalog-list">
-                {props.pizzas.map((pizza) => {
+                {props.pizzas.map((pizza, index) => {
                    return <li key={pizza.id}><Pizza
                     key={pizza.id}
                     name={pizza.name}
@@ -13,8 +14,8 @@ function Menu(props) {
                     price={pizza.price}
                     quantity={pizza.quantity}
                     clicked={() => props.clicked(pizza)}
-                    inc={() => props.inc(pizza)}
-                    dec={() => props.dec(pizza)}
+                    inc={() => props.inc(pizza, index)}
+                    dec={() => props.dec(pizza, index)}
                     />
                     </li> 
                 })}             
