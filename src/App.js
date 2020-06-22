@@ -74,17 +74,13 @@ class App extends Component {
 
   };  
 
-  buttonClickedHandler = (pizza) => {
+  addButtonHandler = (pizza) => {
 
     this.setState( { cart: [...this.state.cart, pizza] } ) 
 
     this.setState( { total: Number(this.state.total + pizza.price * pizza.quantity) } )
     
   };
-
-  orderButtonHandler = () => {
-   alert('Thank you for your order! Our manager will contact you shortly.') 
-  }
 
   handlePizzaChange = (pizza, index) => {
     let pizzas = [...this.state.pizzas];
@@ -126,11 +122,11 @@ class App extends Component {
             path="/menu"
             render={() => <Menu 
               pizzas={this.state.pizzas}
-              clicked={this.buttonClickedHandler}
+              add={this.addButtonHandler}
               inc={this.incButtonHandler}
               dec={this.decButtonHandler}
               onPizzaChange={this.handlePizzaChange}
-              />} />
+              />}/>
             <Route
             path="/cart"
             render={() => <Cart

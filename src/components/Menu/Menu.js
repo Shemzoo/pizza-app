@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Pizza from './Pizza/Pizza'
 import './Menu.css'
 
 class Menu extends Component {
@@ -23,7 +24,7 @@ class Menu extends Component {
                         descr={pizza.descr}
                         price={pizza.price}
                         quantity={pizza.quantity}
-                        clicked={() => this.props.clicked(pizza)}
+                        add={() => this.props.add(pizza)}
                         inc={() => this.incButtonHandler(pizza, index)}
                         dec={() => this.decButtonHandler(pizza, index)}
                         />
@@ -32,24 +33,7 @@ class Menu extends Component {
                 </ul>
             </div>
         )
-
-        function Pizza(props) {
-            return (
-                <div className="card">
-                    <h3>{props.name}</h3>
-                    <p>{props.descr}</p>
-                    <p>{props.price} $</p>
-                    <p>Quantity: {props.quantity}</p>
-                    <div className="count-buttons">
-                        <button className="count-buttons__increase" onClick={props.inc}>+</button>
-                        <button className="count-buttons__decrease" onClick={props.dec}>-</button>
-                    </div>
-                    <button className="buy-button" onClick={props.clicked}>Add to Cart</button>
-                </div>
-            )
-        }
-    }
-    
+    }   
 }
 
 export default Menu;
