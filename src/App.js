@@ -6,65 +6,67 @@ import Cart from './components/Cart/Cart'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import './App.css';
 
+const AVAILABLE_PIZZAS = [
+  { id: 1,
+    name: 'Margherita',
+    price: 15,
+    quantity: 0,
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+
+  { id: 2,
+    name: 'Carbonara',
+    price: 15,
+    quantity: 0,
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+
+  { id: 3,
+    name: 'Crudo',
+    price: 15,
+    quantity: 0,
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+
+  { id: 4,
+    name: 'Pugliese',
+    price: 15,
+    quantity: 0,
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+
+  { id: 5,
+    name: 'Romana',
+    price: 15,
+    quantity: 0,
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+
+  { id: 6,
+    name: 'Schiacciata',
+    price: 15,
+    quantity: 0,
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+
+  { id: 7,
+    name: 'Americana',
+    price: 15,
+    quantity: 0,
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  },
+
+  { id: 8,
+    name: 'Gorgonzola',
+    price: 15,
+    quantity: 0,  
+    descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+  }
+]
+
 class App extends Component {
   state = {
-    pizzas: [
-      { id: 1,
-        name: 'Margherita',
-        price: 15,
-        quantity: 1,
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
-  
-      { id: 2,
-        name: 'Carbonara',
-        price: 15,
-        quantity: 1,
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
-  
-      { id: 3,
-        name: 'Crudo',
-        price: 15,
-        quantity: 1,
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
-  
-      { id: 4,
-        name: 'Pugliese',
-        price: 15,
-        quantity: 1,
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
-  
-      { id: 5,
-        name: 'Romana',
-        price: 15,
-        quantity: 1,
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
-  
-      { id: 6,
-        name: 'Schiacciata',
-        price: 15,
-        quantity: 1,
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
-  
-      { id: 7,
-        name: 'Americana',
-        price: 15,
-        quantity: 1,
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      },
-  
-      { id: 8,
-        name: 'Gorgonzola',
-        price: 15,
-        quantity: 1,  
-        descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
-      }
-    ],
+    pizzas: AVAILABLE_PIZZAS,
 
     cart: [],
 
@@ -104,6 +106,13 @@ class App extends Component {
     this.setState( { total: Number(this.state.total - item.price) } )
   }
 
+  handleItemRemove = (item, index) => {
+    let cart = [...this.state.cart]
+    cart.splice(index, 1)
+    this.setState( { cart: cart } )
+    this.setState( { total: Number(this.state.total - item.price*item.quantity) } )
+  }
+
   render () {
     return (
       <Router>
@@ -131,7 +140,8 @@ class App extends Component {
               inc={this.cartIncButtonHandler}
               dec={this.cartDecButtonHandler}
               itemInc={this.handleIncItemChange}
-              itemDec={this.handleDecItemChange} />}
+              itemDec={this.handleDecItemChange}
+              itemDel={this.handleItemRemove}/>}
             />
           </Switch> 
         </div>
