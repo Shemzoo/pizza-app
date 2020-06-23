@@ -37,7 +37,7 @@ class Cart extends Component {
                             <input type="text" placeholder="Enter Your Surname"/>
                             <input type="tel" placeholder="Enter Your Phone Number"/>
                         </div>               
-                        <button className="order-button" onClick={this.props.clicked}>Place Order</button>
+                        <button className="order-button" onClick={this.orderButtonHandler}>Place Order</button>
                     </div>
                 )
         }

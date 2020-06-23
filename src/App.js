@@ -16,49 +16,49 @@ const AVAILABLE_PIZZAS = [
 
   { id: 2,
     name: 'Carbonara',
-    price: 15,
+    price: 23,
     quantity: 0,
     descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
 
   { id: 3,
     name: 'Crudo',
-    price: 15,
+    price: 20,
     quantity: 0,
     descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
 
   { id: 4,
     name: 'Pugliese',
-    price: 15,
+    price: 18,
     quantity: 0,
     descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
 
   { id: 5,
     name: 'Romana',
-    price: 15,
+    price: 21,
     quantity: 0,
     descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
 
   { id: 6,
     name: 'Schiacciata',
-    price: 15,
+    price: 30,
     quantity: 0,
     descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
 
   { id: 7,
     name: 'Americana',
-    price: 15,
+    price: 28,
     quantity: 0,
     descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   },
 
   { id: 8,
     name: 'Gorgonzola',
-    price: 15,
+    price: 29,
     quantity: 0,  
     descr: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
   }
